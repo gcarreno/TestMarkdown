@@ -1,3 +1,6 @@
 [submodule "pashtmldown"]
 	path = pashtmldown
 	url = git@github.com:BeRo1985/pashtmldown.git
+[submodule "delphi-markdown"]
+	path = delphi-markdown
+	url = git@github.com:grahamegrieve/delphi-markdown.git
