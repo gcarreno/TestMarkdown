@@ -24,7 +24,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="forms"/>
+            <OtherUnitFiles Value="forms;../pashtmldown/src"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>

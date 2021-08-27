@@ -59,6 +59,9 @@ var
 
 implementation
 
+uses
+  PasHTMLDown;
+
 {$R *.lfm}
 
 { TfrmMain }
@@ -70,7 +73,7 @@ end;
 
 procedure TfrmMain.btnPasHTMLDownConvertClick(Sender: TObject);
 begin
-  ShowMessage('Not Implemented YET!!');
+  hvPasHTMLDown.LoadFromString(MarkDownToHTML(memDelphiMarkdownMarkdown.Text));
 end;
 
 end.
