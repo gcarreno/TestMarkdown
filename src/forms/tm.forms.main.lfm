@@ -1,0 +1,123 @@
+object frmMain: TfrmMain
+  Left = 332
+  Height = 500
+  Top = 250
+  Width = 705
+  Caption = 'Test Markdown'
+  ClientHeight = 500
+  ClientWidth = 705
+  Constraints.MinHeight = 500
+  Constraints.MinWidth = 705
+  OnResize = FormResize
+  object psMain: TPairSplitter
+    Left = 0
+    Height = 500
+    Top = 0
+    Width = 705
+    Align = alClient
+    Position = 350
+    object pssPasHTMLDown: TPairSplitterSide
+      Cursor = crArrow
+      Left = 0
+      Height = 500
+      Top = 0
+      Width = 350
+      ClientWidth = 350
+      ClientHeight = 500
+      Constraints.MinWidth = 350
+      object lblPasHTMLDown: TLabel
+        Left = 0
+        Height = 15
+        Top = 0
+        Width = 350
+        Align = alTop
+        Alignment = taCenter
+        Caption = 'pasHTMLdown'
+        ParentColor = False
+      end
+      object memPasHTMLDownMarkdown: TMemo
+        Left = 4
+        Height = 234
+        Top = 19
+        Width = 342
+        Align = alTop
+        BorderSpacing.Around = 4
+        Lines.Strings = (
+          '# Test'
+          ''
+          'Testing *markdown*'
+          ''
+          '## Test'
+          ''
+          'Testing **markdown**'
+        )
+        TabOrder = 0
+      end
+      object btnPasHTMLDownConvert: TButton
+        Left = 0
+        Height = 33
+        Top = 257
+        Width = 350
+        Align = alTop
+        AutoSize = True
+        Caption = 'Convert'
+        OnClick = btnPasHTMLDownConvertClick
+        TabOrder = 1
+      end
+      object hvPasHTMLDown: THtmlViewer
+        Left = 4
+        Height = 202
+        Top = 294
+        Width = 342
+        BorderStyle = htFocused
+        HistoryMaxCount = 0
+        NoSelect = False
+        PrintMarginBottom = 2
+        PrintMarginLeft = 2
+        PrintMarginRight = 2
+        PrintMarginTop = 2
+        PrintScale = 1
+        Align = alClient
+        TabOrder = 2
+      end
+    end
+    object pssDelphiMarkdown: TPairSplitterSide
+      Cursor = crArrow
+      Left = 355
+      Height = 500
+      Top = 0
+      Width = 350
+      ClientWidth = 350
+      ClientHeight = 500
+      Constraints.MinWidth = 350
+      object lblDelphiMarkdown: TLabel
+        Left = 0
+        Height = 15
+        Top = 0
+        Width = 350
+        Align = alTop
+        Alignment = taCenter
+        Caption = 'delphi-markdown'
+        ParentColor = False
+      end
+      object memDelphiMarkdownMarkdown: TMemo
+        Left = 4
+        Height = 234
+        Top = 19
+        Width = 342
+        Align = alTop
+        BorderSpacing.Around = 4
+        Lines.Strings = (
+          '# Test'
+          ''
+          'Testing *markdown*'
+          ''
+          '## Test'
+          ''
+          'Testing **markdown**'
+        )
+        TabOrder = 0
+      end
+    end
+  end
+end
