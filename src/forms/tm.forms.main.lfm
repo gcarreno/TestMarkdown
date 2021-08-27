@@ -51,6 +51,7 @@ object frmMain: TfrmMain
           ''
           'Testing **markdown**'
         )
+        ScrollBars = ssAutoBoth
         TabOrder = 0
       end
       object btnPasHTMLDownConvert: TButton
@@ -65,10 +66,10 @@ object frmMain: TfrmMain
         TabOrder = 1
       end
       object hvPasHTMLDown: THtmlViewer
-        Left = 4
-        Height = 202
-        Top = 294
-        Width = 342
+        Left = 0
+        Height = 210
+        Top = 290
+        Width = 350
         BorderStyle = htFocused
         HistoryMaxCount = 0
         NoSelect = False
@@ -117,6 +118,7 @@ object frmMain: TfrmMain
           ''
           'Testing **markdown**'
         )
+        ScrollBars = ssAutoBoth
         TabOrder = 0
       end
       object btnDelphiMarkdownConvert: TButton
@@ -131,10 +133,10 @@ object frmMain: TfrmMain
         TabOrder = 1
       end
       object hvDelphiMarkdown: THtmlViewer
-        Left = 4
-        Height = 202
-        Top = 294
-        Width = 342
+        Left = 0
+        Height = 210
+        Top = 290
+        Width = 350
         BorderStyle = htFocused
         HistoryMaxCount = 0
         NoSelect = False
