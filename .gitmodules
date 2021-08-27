@@ -1,0 +1,3 @@
+[submodule "pashtmldown"]
+	path = pashtmldown
+	url = git@github.com:BeRo1985/pashtmldown.git
