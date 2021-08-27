@@ -77,6 +77,7 @@ object frmMain: TfrmMain
         PrintMarginRight = 2
         PrintMarginTop = 2
         PrintScale = 1
+        ScrollBars = ssAutoBoth
         Align = alClient
         TabOrder = 2
       end
@@ -117,6 +118,34 @@ object frmMain: TfrmMain
           'Testing **markdown**'
         )
         TabOrder = 0
+      end
+      object btnDelphiMarkdownConvert: TButton
+        Left = 0
+        Height = 33
+        Top = 257
+        Width = 350
+        Align = alTop
+        AutoSize = True
+        Caption = 'Convert'
+        OnClick = btnDelphiMarkdownConvertClick
+        TabOrder = 1
+      end
+      object hvDelphiMarkdown: THtmlViewer
+        Left = 4
+        Height = 202
+        Top = 294
+        Width = 342
+        BorderStyle = htFocused
+        HistoryMaxCount = 0
+        NoSelect = False
+        PrintMarginBottom = 2
+        PrintMarginLeft = 2
+        PrintMarginRight = 2
+        PrintMarginTop = 2
+        PrintScale = 1
+        ScrollBars = ssAutoBoth
+        Align = alClient
+        TabOrder = 2
       end
     end
   end

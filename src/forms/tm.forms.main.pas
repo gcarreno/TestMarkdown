@@ -38,6 +38,8 @@ type
 
   TfrmMain = class(TForm)
     btnPasHTMLDownConvert: TButton;
+    btnDelphiMarkdownConvert: TButton;
+    hvDelphiMarkdown: THtmlViewer;
     hvPasHTMLDown: THtmlViewer;
     lblPasHTMLDown: TLabel;
     lblDelphiMarkdown: TLabel;
@@ -46,6 +48,7 @@ type
     psMain: TPairSplitter;
     pssPasHTMLDown: TPairSplitterSide;
     pssDelphiMarkdown: TPairSplitterSide;
+    procedure btnDelphiMarkdownConvertClick(Sender: TObject);
     procedure btnPasHTMLDownConvertClick(Sender: TObject);
     procedure FormResize(Sender: TObject);
   private
@@ -60,7 +63,10 @@ var
 implementation
 
 uses
-  PasHTMLDown;
+  PasHTMLDown
+, MarkdownProcessor
+, MarkdownCommonMark
+;
 
 {$R *.lfm}
 
@@ -72,8 +78,42 @@ begin
 end;
 
 procedure TfrmMain.btnPasHTMLDownConvertClick(Sender: TObject);
+var
+  sHTML: String;
 begin
-  hvPasHTMLDown.LoadFromString(MarkDownToHTML(memDelphiMarkdownMarkdown.Text));
+  sHTML:=
+  '<html>'+
+    '<head>'+
+      '<title>pasHTMLdown</title>'+
+    '</head>'+
+    '<body>'+
+      MarkDownToHTML(memPasHTMLDownMarkdown.Text)+
+    '</body>'+
+  '</html>'
+  ;
+  hvPasHTMLDown.Clear;
+  hvPasHTMLDown.LoadFromString(sHTML);
+end;
+
+procedure TfrmMain.btnDelphiMarkdownConvertClick(Sender: TObject);
+var
+  sHTML: String;
+  mp: TMarkdownProcessor;
+begin
+  mp:= TMarkdownProcessor.CreateDialect(mdCommonMark);
+  sHTML:=
+  '<html>'+
+    '<head>'+
+      '<title>delphi-markdown</title>'+
+    '</head>'+
+    '<body>'+
+      mp.process(memDelphiMarkdownMarkdown.Text)+
+    '</body>'+
+  '</html>'
+  ;
+  mp.Free;
+  hvDelphiMarkdown.Clear;
+  hvDelphiMarkdown.LoadFromString(sHTML);
 end;
 
 end.
