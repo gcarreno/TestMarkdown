@@ -4,3 +4,6 @@
 [submodule "delphi-markdown"]
 	path = delphi-markdown
 	url = git@github.com:grahamegrieve/delphi-markdown.git
+[submodule "fpc-markdown"]
+	path = fpc-markdown
+	url = https://github.com/mriscoc/fpc-markdown
