@@ -1,0 +1,91 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ "*" ]
+    paths-ignore: [ "README.md" ]
+
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.operating-system }}
+
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest, macos-latest]
+        lazarus-versions: [stable, 2.0.12, 2.0.10]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Install Lazarus
+      uses: gcarreno/setup-lazarus@v3.0.16
+      with:
+        lazarus-version: ${{ matrix.lazarus-versions }}
+
+    - name: Build the Main App (Windows)
+      if: ${{ matrix.operating-system == 'windows-latest' }}
+      run: lazbuild -B --bm=Release "src/TestMarkdown.lpi"
+
+    - name: Build the Main App (Ubuntu)
+      if: ${{ matrix.operating-system == 'ubuntu-latest' }}
+      run: lazbuild -B --bm=Release "src/TestMarkdown.lpi"
+
+    - name: Build the Main App (macOS)
+      if: ${{ matrix.operating-system == 'macos-latest' }}
+      run: lazbuild -B --bm=Release --ws=cocoa "src/TestMarkdown.lpi"
+
+    - name: Upload binary (Windows)
+      if: ${{ (matrix.operating-system == 'windows-latest')  &&  (matrix.lazarus-versions == 'stable') }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: TestMarkdown
+        path: bin/TestMarkdown.exe
+
+    - name: Upload binary (Ubuntu)
+      if: ${{ (matrix.operating-system == 'ubuntu-latest')  &&  (matrix.lazarus-versions == 'stable') }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: TestMarkdown
+        path: bin/TestMarkdown
+
+  package-release:
+    if: contains(github.ref, '/tags/')
+
+    name: Package and create GitHub Release
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set output
+      id: vars
+      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
+    - name: Download the Release binary
+      uses: actions/download-artifact@v2
+
+    - name: List files
+      run: ls -alF TestMarkdown
+
+    - name: Create release files
+      run: |
+        cd TestMarkdown
+        zip -r TestMarkdown-${{ steps.vars.outputs.tag }}-x86_64-win64.zip TestMarkdown.exe
+        tar -zcvf TestGoogleTranlate-${{ steps.vars.outputs.tag }}-x86_64-linux.tar.gz TestMarkdown
+    - name: Create GitHub release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: TestMarkdown ${{ steps.vars.outputs.tag }}
+        body_path: release-notes.md
+        files: |
+          TestMarkdown/*.tar.gz
+          TestMarkdown/*.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
