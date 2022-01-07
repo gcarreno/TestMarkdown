@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        operating-system: [ubuntu-latest, windows-latest, macos-latest]
+        operating-system: [ubuntu-latest, windows-latest]
         lazarus-versions: [stable, 2.0.12, 2.0.10]
 
     steps:
