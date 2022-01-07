@@ -1,4 +1,3 @@
-### TestMarkdown v0.1
+### TestMarkdown v0.2
 
-- First Release
-- Implemented CI/CD
+- Updated submodule `delphi-markdown`
