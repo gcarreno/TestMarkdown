@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     tags: [ "*" ]
-    paths-ignore: [ "README.md" ]
+    paths-ignore: [ "README.md", "history.md", "release-notes.md" ]
 
   pull_request:
     branches: [ main ]
@@ -16,8 +16,8 @@ jobs:
 
     strategy:
       matrix:
-        operating-system: [ubuntu-latest, windows-latest]
-        lazarus-versions: [stable, 2.0.12, 2.0.10]
+        operating-system: [ ubuntu-latest, windows-latest ]
+        lazarus-versions: [ stable, 2.0.12, 2.0.10 ]
 
     steps:
     - name: Checkout Repository
@@ -82,7 +82,7 @@ jobs:
       run: |
         cd TestMarkdown
         zip -r TestMarkdown-${{ steps.vars.outputs.tag }}-x86_64-win64.zip TestMarkdown.exe
-        tar -zcvf TestGoogleTranlate-${{ steps.vars.outputs.tag }}-x86_64-linux.tar.gz TestMarkdown
+        tar -zcvf TestMarkdown-${{ steps.vars.outputs.tag }}-x86_64-linux.tar.gz TestMarkdown
     - name: Create GitHub release
       uses: softprops/action-gh-release@v1
       with:
