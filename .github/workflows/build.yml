@@ -23,7 +23,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
       with:
-        submodule: true
+        submodules: true
 
     - name: Install Lazarus
       uses: gcarreno/setup-lazarus@v3.0.16
